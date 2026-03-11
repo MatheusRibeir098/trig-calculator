@@ -118,16 +118,16 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
       background: 'white',
       borderRadius: '0.5rem',
       boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-      padding: '1.5rem',
+      padding: '1rem',
       maxWidth: '42rem',
       margin: '0 auto'
     }}>
-      <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {/* Inputs Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1rem'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: '0.75rem'
         }}>
           <div>
             <label style={{
@@ -245,8 +245,8 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
         {/* Options */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1rem'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: '0.75rem'
         }}>
           <div>
             <label style={{
@@ -365,40 +365,41 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
       {/* Results */}
       {result && (
         <div style={{
-          marginTop: '2rem',
-          padding: '1.5rem',
+          marginTop: '1rem',
+          padding: '1rem',
           background: '#f3e8ff',
           borderRadius: '0.5rem',
           border: '2px solid #a855f7'
         }}>
           <h3 style={{
-            fontSize: '1.25rem',
+            fontSize: '1.125rem',
             fontWeight: 'bold',
             color: '#001f3f',
-            marginBottom: '1rem',
+            marginBottom: '0.75rem',
             margin: 0
           }}>
             Resultados
           </h3>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-            gap: '1rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+            gap: '0.75rem'
           }}>
             {result.angle !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   Ângulo
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.angle, decimals)}°
                 </p>
@@ -407,17 +408,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.opposite !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   Cateto Oposto
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.opposite, decimals)}
                 </p>
@@ -426,17 +428,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.adjacent !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   Cateto Adjacente
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.adjacent, decimals)}
                 </p>
@@ -445,17 +448,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.hypotenuse !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   Hipotenusa
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.hypotenuse, decimals)}
                 </p>
@@ -464,17 +468,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.sin !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   sen(θ)
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.sin, decimals)}
                 </p>
@@ -483,17 +488,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.cos !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   cos(θ)
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.cos, decimals)}
                 </p>
@@ -502,17 +508,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.tan !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   tan(θ)
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.tan, decimals)}
                 </p>
@@ -521,17 +528,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.cot !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   cot(θ)
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.cot, decimals)}
                 </p>
@@ -540,17 +548,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.sec !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   sec(θ)
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.sec, decimals)}
                 </p>
@@ -559,17 +568,18 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
             {result.csc !== undefined && (
               <div>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.75rem',
                   color: '#6b7280',
                   margin: 0
                 }}>
                   csc(θ)
                 </p>
                 <p style={{
-                  fontSize: '1.125rem',
+                  fontSize: '0.875rem',
                   fontWeight: 'bold',
                   color: '#a855f7',
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-all'
                 }}>
                   {formatNumber(result.csc, decimals)}
                 </p>
@@ -587,11 +597,12 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
 
           {saveSuccess && (
             <p style={{
-              marginTop: '1rem',
-              fontSize: '0.875rem',
+              marginTop: '0.75rem',
+              fontSize: '0.75rem',
               color: '#16a34a',
               fontWeight: '600',
-              margin: 0
+              margin: 0,
+              textAlign: 'center'
             }}>
               ✓ Cálculo salvo no histórico
             </p>

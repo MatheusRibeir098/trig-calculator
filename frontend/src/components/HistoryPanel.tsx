@@ -58,13 +58,44 @@ export function HistoryPanel({ refreshTrigger = 0 }: HistoryPanelProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto mt-8">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-navy">Histórico de Cálculos</h2>
+    <div style={{
+      background: 'white',
+      borderRadius: '0.5rem',
+      boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+      padding: '1rem',
+      maxWidth: '64rem',
+      margin: '1rem auto'
+    }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.75rem',
+        marginBottom: '1rem'
+      }}>
+        <h2 style={{
+          fontSize: 'clamp(1.25rem, 4vw, 1.5rem)',
+          fontWeight: 'bold',
+          color: '#001f3f',
+          textAlign: 'center'
+        }}>
+          Histórico de Cálculos
+        </h2>
         {total > 0 && (
           <button
             onClick={handleClearAll}
-            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition"
+            style={{
+              background: '#ef4444',
+              color: 'white',
+              padding: '0.5rem 1rem',
+              borderRadius: '0.5rem',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '0.875rem',
+              transition: 'background 0.2s',
+              alignSelf: 'center'
+            }}
+            onMouseOver={(e) => (e.target as HTMLButtonElement).style.background = '#dc2626'}
+            onMouseOut={(e) => (e.target as HTMLButtonElement).style.background = '#ef4444'}
           >
             Limpar Tudo
           </button>
@@ -72,86 +103,161 @@ export function HistoryPanel({ refreshTrigger = 0 }: HistoryPanelProps) {
       </div>
 
       {error && (
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+        <div style={{
+          background: '#fee2e2',
+          borderLeft: '4px solid #ef4444',
+          color: '#b91c1c',
+          padding: '1rem',
+          marginBottom: '1rem',
+          borderRadius: '0.25rem'
+        }}>
           {error}
         </div>
       )}
 
       {loading ? (
-        <p className="text-center text-navy/70">Carregando...</p>
+        <p style={{ textAlign: 'center', color: '#6b7280' }}>Carregando...</p>
       ) : !records || records.length === 0 ? (
-        <p className="text-center text-navy/70">Nenhum cálculo salvo ainda</p>
+        <p style={{ textAlign: 'center', color: '#6b7280' }}>Nenhum cálculo salvo ainda</p>
       ) : (
         <>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b-2 border-purple">
-                  <th className="text-left py-3 px-4 font-bold text-navy">Data/Hora</th>
-                  <th className="text-center py-3 px-4 font-bold text-navy">θ (°)</th>
-                  <th className="text-center py-3 px-4 font-bold text-navy">Oposto</th>
-                  <th className="text-center py-3 px-4 font-bold text-navy">Adjacente</th>
-                  <th className="text-center py-3 px-4 font-bold text-navy">Hipotenusa</th>
-                  <th className="text-center py-3 px-4 font-bold text-navy">sen(θ)</th>
-                  <th className="text-center py-3 px-4 font-bold text-navy">cos(θ)</th>
-                  <th className="text-center py-3 px-4 font-bold text-navy">Ação</th>
-                </tr>
-              </thead>
-              <tbody>
-                {records.map((record) => (
-                  <tr key={record.id} className="border-b border-purple/20 hover:bg-purple/5">
-                    <td className="py-3 px-4">
-                      {new Date(record.created_at).toLocaleString('pt-BR')}
-                    </td>
-                    <td className="text-center py-3 px-4">
-                      {formatNumber(record.angle, 2)}
-                    </td>
-                    <td className="text-center py-3 px-4">
+          {/* Mobile: Card view */}
+          <div style={{ display: 'block' }}>
+            {records.map((record) => (
+              <div
+                key={record.id}
+                style={{
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '0.5rem',
+                  padding: '1rem',
+                  marginBottom: '0.75rem',
+                  background: '#fafafa'
+                }}
+              >
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: '0.5rem',
+                  fontSize: '0.75rem'
+                }}>
+                  <div>
+                    <span style={{ color: '#6b7280' }}>Data:</span>
+                    <div style={{ fontWeight: '600', color: '#001f3f' }}>
+                      {new Date(record.created_at).toLocaleDateString('pt-BR')}
+                    </div>
+                    <div style={{ fontSize: '0.65rem', color: '#9ca3af' }}>
+                      {new Date(record.created_at).toLocaleTimeString('pt-BR')}
+                    </div>
+                  </div>
+                  <div>
+                    <span style={{ color: '#6b7280' }}>θ:</span>
+                    <div style={{ fontWeight: '600', color: '#a855f7' }}>
+                      {formatNumber(record.angle, 2)}°
+                    </div>
+                  </div>
+                  <div>
+                    <span style={{ color: '#6b7280' }}>Oposto:</span>
+                    <div style={{ fontWeight: '600', color: '#001f3f' }}>
                       {formatNumber(record.opposite, 2)}
-                    </td>
-                    <td className="text-center py-3 px-4">
+                    </div>
+                  </div>
+                  <div>
+                    <span style={{ color: '#6b7280' }}>Adjacente:</span>
+                    <div style={{ fontWeight: '600', color: '#001f3f' }}>
                       {formatNumber(record.adjacent, 2)}
-                    </td>
-                    <td className="text-center py-3 px-4">
+                    </div>
+                  </div>
+                  <div>
+                    <span style={{ color: '#6b7280' }}>Hipotenusa:</span>
+                    <div style={{ fontWeight: '600', color: '#001f3f' }}>
                       {formatNumber(record.hypotenuse, 2)}
-                    </td>
-                    <td className="text-center py-3 px-4">
-                      {formatNumber(record.sin, 4)}
-                    </td>
-                    <td className="text-center py-3 px-4">
-                      {formatNumber(record.cos, 4)}
-                    </td>
-                    <td className="text-center py-3 px-4">
-                      <button
-                        onClick={() => handleDelete(record.id)}
-                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition text-xs"
-                      >
-                        Excluir
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </div>
+                  </div>
+                  <div>
+                    <span style={{ color: '#6b7280' }}>sen/cos:</span>
+                    <div style={{ fontWeight: '600', color: '#a855f7', fontSize: '0.7rem' }}>
+                      {formatNumber(record.sin, 3)} / {formatNumber(record.cos, 3)}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleDelete(record.id)}
+                  style={{
+                    background: '#ef4444',
+                    color: 'white',
+                    padding: '0.375rem 0.75rem',
+                    borderRadius: '0.375rem',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: '0.75rem',
+                    marginTop: '0.75rem',
+                    width: '100%',
+                    transition: 'background 0.2s'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLButtonElement).style.background = '#dc2626'}
+                  onMouseOut={(e) => (e.target as HTMLButtonElement).style.background = '#ef4444'}
+                >
+                  Excluir
+                </button>
+              </div>
+            ))}
           </div>
 
           {/* Pagination */}
-          <div className="flex justify-between items-center mt-6">
-            <p className="text-sm text-navy/70">
-              Mostrando {records.length} de {total} registros
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.75rem',
+            marginTop: '1rem',
+            alignItems: 'center'
+          }}>
+            <p style={{ fontSize: '0.75rem', color: '#6b7280' }}>
+              {records.length} de {total} registros
             </p>
-            <div className="space-x-2">
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
               <button
                 onClick={() => setOffset(Math.max(0, offset - limit))}
                 disabled={offset === 0}
-                className="bg-purple hover:bg-purple/80 disabled:opacity-50 text-white px-4 py-2 rounded-lg transition"
+                style={{
+                  background: offset === 0 ? '#d1d5db' : '#a855f7',
+                  color: 'white',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '0.5rem',
+                  border: 'none',
+                  cursor: offset === 0 ? 'not-allowed' : 'pointer',
+                  fontSize: '0.75rem',
+                  transition: 'background 0.2s',
+                  opacity: offset === 0 ? 0.5 : 1
+                }}
+                onMouseOver={(e) => {
+                  if (offset !== 0) (e.target as HTMLButtonElement).style.background = '#9333ea';
+                }}
+                onMouseOut={(e) => {
+                  if (offset !== 0) (e.target as HTMLButtonElement).style.background = '#a855f7';
+                }}
               >
                 ← Anterior
               </button>
               <button
                 onClick={() => setOffset(offset + limit)}
                 disabled={offset + limit >= total}
-                className="bg-purple hover:bg-purple/80 disabled:opacity-50 text-white px-4 py-2 rounded-lg transition"
+                style={{
+                  background: offset + limit >= total ? '#d1d5db' : '#a855f7',
+                  color: 'white',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '0.5rem',
+                  border: 'none',
+                  cursor: offset + limit >= total ? 'not-allowed' : 'pointer',
+                  fontSize: '0.75rem',
+                  transition: 'background 0.2s',
+                  opacity: offset + limit >= total ? 0.5 : 1
+                }}
+                onMouseOver={(e) => {
+                  if (offset + limit < total) (e.target as HTMLButtonElement).style.background = '#9333ea';
+                }}
+                onMouseOut={(e) => {
+                  if (offset + limit < total) (e.target as HTMLButtonElement).style.background = '#a855f7';
+                }}
               >
                 Próximo →
               </button>

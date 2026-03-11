@@ -49,40 +49,50 @@ export function TriangleCanvas({
             fill="none" stroke="#001F3F" stroke-width="1.5"/>
       
       <!-- Labels for sides -->
-      <text x="${(x1 + x2) / 2}" y="${y1 + 25}" text-anchor="middle" 
-            font-size="14" fill="#001F3F" font-weight="bold">
-        Cateto Adjacente: ${adjacent.toFixed(2)}
+      <text x="${(x1 + x2) / 2}" y="${y1 + 20}" text-anchor="middle" 
+            font-size="11" fill="#001F3F" font-weight="bold">
+        Adj: ${adjacent.toFixed(1)}
       </text>
       
-      <text x="${x2 + 30}" y="${(y2 + y3) / 2}" text-anchor="start" 
-            font-size="14" fill="#001F3F" font-weight="bold">
-        Cateto Oposto: ${opposite.toFixed(2)}
+      <text x="${x2 + 15}" y="${(y2 + y3) / 2}" text-anchor="start" 
+            font-size="11" fill="#001F3F" font-weight="bold">
+        Opo: ${opposite.toFixed(1)}
       </text>
       
       ${hypotenuse ? `
-        <text x="${(x1 + x3) / 2 - 30}" y="${(y1 + y3) / 2 - 10}" text-anchor="middle" 
-              font-size="14" fill="#8B5CF6" font-weight="bold">
-          Hipotenusa: ${hypotenuse.toFixed(2)}
+        <text x="${(x1 + x3) / 2 - 20}" y="${(y1 + y3) / 2 - 5}" text-anchor="middle" 
+              font-size="11" fill="#8B5CF6" font-weight="bold">
+          Hip: ${hypotenuse.toFixed(1)}
         </text>
       ` : ''}
       
       ${angle ? `
-        <text x="${x1 + 20}" y="${y1 - 15}" text-anchor="start" 
-              font-size="14" fill="#8B5CF6" font-weight="bold">
-          θ = ${angle.toFixed(2)}°
+        <text x="${x1 + 15}" y="${y1 - 10}" text-anchor="start" 
+              font-size="11" fill="#8B5CF6" font-weight="bold">
+          θ=${angle.toFixed(1)}°
         </text>
       ` : ''}
     `;
   }, [opposite, adjacent, hypotenuse, angle]);
 
   return (
-    <div className="flex justify-center my-8">
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      margin: '1rem 0',
+      width: '100%'
+    }}>
       <svg
         ref={svgRef}
         width="100%"
-        height="300"
-        className="max-w-2xl border-2 border-purple rounded-lg bg-white"
-        viewBox="0 0 400 400"
+        height="250"
+        style={{
+          maxWidth: '100%',
+          border: '2px solid #a855f7',
+          borderRadius: '0.5rem',
+          background: 'white'
+        }}
+        viewBox="0 0 400 300"
         preserveAspectRatio="xMidYMid meet"
       />
     </div>
