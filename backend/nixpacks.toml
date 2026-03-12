@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["postgresql_15"]
+nixPkgs = ["postgresql_15", "gcc", "gnumake", "libpq"]
 nixLibs = true
 
 [phases.install]
