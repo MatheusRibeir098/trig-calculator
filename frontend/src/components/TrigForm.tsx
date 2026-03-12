@@ -119,7 +119,7 @@ export function TrigForm({ onCalculate, onError }: TrigFormProps) {
       borderRadius: '0.5rem',
       boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
       padding: '1rem',
-      maxWidth: '42rem',
+      maxWidth: '64rem',
       margin: '0 auto'
     }}>
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

@@ -38,7 +38,7 @@ export function Home() {
             padding: '1rem',
             marginBottom: '1.5rem',
             borderRadius: '0.5rem',
-            maxWidth: '42rem',
+            maxWidth: '64rem',
             margin: '0 auto 1.5rem'
           }}>
             <p style={{ fontWeight: 'bold', margin: '0 0 0.5rem 0' }}>Erro</p>
