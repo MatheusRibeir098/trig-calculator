@@ -1,5 +1,6 @@
 [phases.setup]
 nixPkgs = ["postgresql_15"]
+nixLibs = true
 
 [phases.install]
 cmds = ["pip install -r requirements.txt"]
